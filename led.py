@@ -28,32 +28,48 @@ blueLED = GPIO.PWM(bluePin, 50)
 
 def redOn(intensity):
     global redLED
-    redLED.start(0)
+    redLED.start(intensity)
+    greenLED.stop()
+    blueLED.stop()
 
 def greenOn(intensity):
-    global greenLED
-    greenLED.start(0)
+    global redLED
+    redLED.start(intensity)
+    greenLED.stop()
+    blueLED.stop()
 
 def blueOn(intensity):
-    global blueLED
-    blueLED.start(0)
+    global redLED
+    redLED.start(intensity)
+    greenLED.stop()
+    blueLED.stop()
 
-# def yellowOn(intensity):
-#     blink(redPin, intensity)
-#     blink(greenPin, intensity)
-#
-# def cyanOn(intensity):
-#     blink(greenPin, intensity)
-#     blink(bluePin, intensity)
-#
-# def magentaOn(intensity):
-#     blink(redPin, intensity)
-#     blink(bluePin, intensity)
-#
-# def whiteOn(intensity):
-#     blink(redPin, intensity)
-#     blink(greenPin, intensity)
-#     blink(bluePin, intensity)
+def yellowOn(intensity):
+    redOn(intensity)
+    greenOn(intensity)
+
+    #blink(redPin, intensity)
+    #blink(greenPin, intensity)
+
+def cyanOn(intensity):
+    greenOn(intensity)
+    blueOn(intensity)
+    #blink(greenPin, intensity)
+    #blink(bluePin, intensity)
+
+def magentaOn(intensity):
+    redOn(intensity)
+    blueOn(intensity)
+    #blink(redPin, intensity)
+    #blink(bluePin, intensity)
+
+def whiteOn(intensity):
+    redOn(intensity)
+    greenOn(intensity)
+    blueOn(intensity)
+    #blink(redPin, intensity)
+    #blink(greenPin, intensity)
+    #blink(bluePin, intensity)
 
 # def redOff():
 #     turnOff(redPin)
