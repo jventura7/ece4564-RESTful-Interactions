@@ -73,9 +73,7 @@ def whiteOff():
     turnOff(greenPin)
     turnOff(bluePin)
 
-def turnOn(status, color, intensity):
-    if status == "off":
-        whiteOff()
+def turnOn(color, intensity):
     if color == "red":
         redOn()
     elif color == "green":
@@ -97,9 +95,13 @@ def turnOn(status, color, intensity):
 def main():
     while True:
         status = input("on or off?: ")
-        color = input("color?: ")
-        intensity = input("intensity?: ")
-        turnOn(status, color, intensity)
+        if status == "on":
+            color = input("color?: ")
+            intensity = input("intensity?: ")
+            whiteOff()
+            turnOn(color, intensity)
+        else:
+            whiteOff()
     # pin = 20
     # GPIO.setmode(GPIO.BCM)
     # GPIO.setup(pin, GPIO.OUT)
