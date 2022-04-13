@@ -102,37 +102,13 @@ def main():
         if status == "on":
             color = input("color?: ")
 
-
             intensity = input("enter intensity value (0 to 100): ")
-            duty = int(intensity)
-            pwm_led = GPIO.PWN()
             whiteOff()
             turnOn(color, intensity)
         else:
             whiteOff()
 
-
-    led = redPin
-    GPIO.setmode(GPIO.BCM)
-    GPIO.setup(led, GPIO.OUT)
-
-    pwm_led = GPIO.PWM(led, 50)# 50Hz PWM Frequency
-
-    pwm_led.start(100)# Full Brightness, 100% Duty Cycle
-    try:
-        while True:
-            duty_s = input("Enter Brightness Value (0 to 100):")
-            # Convert into Integer Value
-            duty = int(duty_s)
-            pwm_led.ChangeDutyCycle(duty)
-            time.sleep(0.5)
-    except KeyboardInterrupt:
-        print("Exiting Program")
-    except:
-        print("Error Occurs, Exiting Program")
-    finally:
-        GPIO.cleanup()
-    #GPIO.cleanup()
+    GPIO.cleanup()
 
 main()
 
