@@ -33,16 +33,16 @@ def redOn(intensity):
     blueLED.stop()
 
 def greenOn(intensity):
-    global redLED
-    redLED.start(intensity)
-    greenLED.stop()
+    global greenLED
+    greenLED.start(intensity)
+    redLED.stop()
     blueLED.stop()
 
 def blueOn(intensity):
-    global redLED
-    redLED.start(intensity)
+    global blueLED
+    blueLED.start(intensity)
+    redLED.stop()
     greenLED.stop()
-    blueLED.stop()
 
 def yellowOn(intensity):
     redOn(intensity)
@@ -107,14 +107,14 @@ def turnOn(color, intensity):
         greenOn(intensity)
     elif color == "blue":
         blueOn(intensity)
-    # elif color == "yellow":
-    #     yellowOn(intensity)
-    # elif color == "cyan":
-    #     cyanOn(intensity)
-    # elif color == "magenta":
-    #     magentaOn(intensity)
-    # elif color == "white":
-    #     whiteOn(intensity)
+    elif color == "yellow":
+        yellowOn(intensity)
+    elif color == "cyan":
+        cyanOn(intensity)
+    elif color == "magenta":
+        magentaOn(intensity)
+    elif color == "white":
+        whiteOn(intensity)
 
 def main():
 
@@ -125,7 +125,7 @@ def main():
 
             intensity = input("enter intensity value (0 to 100): ")
             #whiteOff()
-            turnOn(color, str(intensity))
+            turnOn(color, int(intensity))
         else:
             #whiteOff()
             GPIO.cleanup()
