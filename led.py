@@ -11,14 +11,10 @@ redPin = 21
 greenPin = 19
 bluePin = 13
 start = 0
-
-def blink(pin, intensity):
-
-    pwm_led = GPIO.PWM(pin, 50)
-    pwm_led.start(100)
-    duty = int(intensity)
-
-    #GPIO.output(pin, GPIO.HIGH)
+GPIO.setmode(GPIO.BCM)
+GPIO.setup(redPin, GPIO.OUT)
+GPIO.setup(greenPin, GPIO.OUT)
+GPIO.setup(bluePin, GPIO.OUT)
 
 def turnOff(pin):
     GPIO.setmode(GPIO.BCM)
@@ -41,22 +37,22 @@ def blueOn(intensity):
     pwm_led = GPIO.PWM(bluePin, 50)
     pwm_led.start(0)
 
-def yellowOn(intensity):
-    blink(redPin, intensity)
-    blink(greenPin, intensity)
-
-def cyanOn(intensity):
-    blink(greenPin, intensity)
-    blink(bluePin, intensity)
-
-def magentaOn(intensity):
-    blink(redPin, intensity)
-    blink(bluePin, intensity)
-
-def whiteOn(intensity):
-    blink(redPin, intensity)
-    blink(greenPin, intensity)
-    blink(bluePin, intensity)
+# def yellowOn(intensity):
+#     blink(redPin, intensity)
+#     blink(greenPin, intensity)
+#
+# def cyanOn(intensity):
+#     blink(greenPin, intensity)
+#     blink(bluePin, intensity)
+#
+# def magentaOn(intensity):
+#     blink(redPin, intensity)
+#     blink(bluePin, intensity)
+#
+# def whiteOn(intensity):
+#     blink(redPin, intensity)
+#     blink(greenPin, intensity)
+#     blink(bluePin, intensity)
 
 def redOff():
     turnOff(redPin)
@@ -91,20 +87,16 @@ def turnOn(color, intensity):
         greenOn(intensity)
     elif color == "blue":
         blueOn(intensity)
-    elif color == "yellow":
-        yellowOn(intensity)
-    elif color == "cyan":
-        cyanOn(intensity)
-    elif color == "magenta":
-        magentaOn(intensity)
-    elif color == "white":
-        whiteOn(intensity)
+    # elif color == "yellow":
+    #     yellowOn(intensity)
+    # elif color == "cyan":
+    #     cyanOn(intensity)
+    # elif color == "magenta":
+    #     magentaOn(intensity)
+    # elif color == "white":
+    #     whiteOn(intensity)
 
 def main():
-    GPIO.setmode(GPIO.BCM)
-    GPIO.setup(redPin, GPIO.OUT)
-    GPIO.setup(greenPin, GPIO.OUT)
-    GPIO.setup(bluePin, GPIO.OUT)
 
     while True:
         status = input("on or off?: ")
