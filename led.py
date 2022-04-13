@@ -125,7 +125,7 @@ def main():
 
             intensity = input("enter intensity value (0 to 100): ")
             #whiteOff()
-            turnOn(color, intensity)
+            turnOn(color, str(intensity))
         else:
             #whiteOff()
             GPIO.cleanup()
