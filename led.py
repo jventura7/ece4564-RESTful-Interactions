@@ -8,18 +8,16 @@ import RPi.GPIO as GPIO
 import sys
 
 redPin = 21
-greenPin = 20
-bluePin = 16
+greenPin = 19
+bluePin = 13
+start = 0
 
 def blink(pin, intensity):
-    GPIO.setmode(GPIO.BCM)
-    #GPIO.setwarnings(False)
-    GPIO.setup(pin, GPIO.OUT)
+
     pwm_led = GPIO.PWM(pin, 50)
     pwm_led.start(100)
     duty = int(intensity)
-    pwm_led.ChangeDutyCycle(duty)
-    time.sleep(0.5)
+
     #GPIO.output(pin, GPIO.HIGH)
 
 def turnOff(pin):
@@ -29,13 +27,19 @@ def turnOff(pin):
     GPIO.output(pin, GPIO.LOW)
 
 def redOn(intensity):
-    blink(redPin, intensity)
+    #blink(redPin, intensity)
+    pwm_led = GPIO.PWM(redPin, 50)
+    pwm_led.start(0)
 
 def greenOn(intensity):
-    blink(greenPin, intensity)
+    #blink(greenPin, intensity)
+    pwm_led = GPIO.PWM(greenPin, 50)
+    pwm_led.start(0)
 
 def blueOn(intensity):
-    blink(bluePin, intensity)
+    #blink(bluePin, intensity)
+    pwm_led = GPIO.PWM(bluePin, 50)
+    pwm_led.start(0)
 
 def yellowOn(intensity):
     blink(redPin, intensity)
@@ -97,6 +101,11 @@ def turnOn(color, intensity):
         whiteOn(intensity)
 
 def main():
+    GPIO.setmode(GPIO.BCM)
+    GPIO.setup(redPin, GPIO.OUT)
+    GPIO.setup(greenPin, GPIO.OUT)
+    GPIO.setup(bluePin, GPIO.OUT)
+
     while True:
         status = input("on or off?: ")
         if status == "on":
