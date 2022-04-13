@@ -128,8 +128,7 @@ def main():
             turnOn(color, intensity)
         else:
             #whiteOff()
-
-    GPIO.cleanup()
+            GPIO.cleanup()
 
 main()
 
