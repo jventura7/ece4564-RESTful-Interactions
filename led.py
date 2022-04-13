@@ -13,6 +13,7 @@ bluePin = 16
 
 def blink(pin):
     GPIO.setmode(GPIO.BCM)
+    GPIO.setwarnings(False)
     GPIO.setup(pin, GPIO.OUT)
     GPIO.output(pin, GPIO.HIGH)
 
@@ -93,33 +94,40 @@ def turnOn(color, intensity):
 
 
 def main():
-    while True:
-        status = input("on or off?: ")
-        if status == "on":
-            color = input("color?: ")
-            intensity = input("intensity?: ")
-            whiteOff()
-            turnOn(color, intensity)
-        else:
-            whiteOff()
-    # pin = 20
-    # GPIO.setmode(GPIO.BCM)
-    # GPIO.setup(pin, GPIO.OUT)
-    #
-    # p = GPIO.PWM(pin, 50)  # channel=12 frequency=50Hz
-    # p.start(0)
-    # try:
-    #     while 1:
-    #         for dc in range(0, 101, 5):
-    #             p.ChangeDutyCycle(dc)
-    #             time.sleep(0.1)
-    #         for dc in range(100, -1, -5):
-    #             p.ChangeDutyCycle(dc)
-    #             time.sleep(0.1)
-    # except KeyboardInterrupt:
-    #     pass
-    # p.stop()
-    # GPIO.cleanup()
+    # while True:
+    #     status = input("on or off?: ")
+    #     if status == "on":
+    #         color = input("color?: ")
+    #         intensity = input("enter intensity value (0 to 100): ")
+    #         duty = int(intensity)
+    #         pwm_led = GPIO.PWN()
+    #         whiteOff()
+    #         turnOn(color, intensity)
+    #     else:
+    #         whiteOff()
+    led = redPin
+    GPIO.setmode(GPIO.BCM)
+    GPIO.setup(led, GPIO.OUT)
+    # 50Hz PWM Frequency
+    pwm_led = GPIO.PWM(led, 50)
+    # Full Brightness, 100% Duty Cycle
+    pwm_led.start(100)
+    try:
+        while True:
+            duty_s = input("Enter Brightness Value (0 to 100):")
+            # Convert into Integer Value  
+            duty = int(duty_s)
+            pwm_led.ChangeDutyCycle(duty)
+            time.sleep(0.5)
+    except KeyboardInterrupt:
+        print
+        "Exiting Program"
+    except:
+        print
+        "Error Occurs, Exiting Program"
+    finally:
+        GPIO.cleanup()
+    GPIO.cleanup()
 
 main()
 
