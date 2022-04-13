@@ -11,42 +11,48 @@ redPin = 21
 greenPin = 20
 bluePin = 16
 
-def blink(pin):
+def blink(pin, intensity):
     GPIO.setmode(GPIO.BCM)
-    GPIO.setwarnings(False)
+    #GPIO.setwarnings(False)
     GPIO.setup(pin, GPIO.OUT)
-    GPIO.output(pin, GPIO.HIGH)
+    pwm_led = GPIO.PWM(pin, 50)
+    pwm_led.start(100)
+    duty = int(intensity)
+    pwm_led.ChangeDutyCycle(duty)
+    time.sleep(0.5)
+    #GPIO.output(pin, GPIO.HIGH)
 
 def turnOff(pin):
     GPIO.setmode(GPIO.BCM)
+    #GPIO.setwarnings(False)
     GPIO.setup(pin, GPIO.OUT)
     GPIO.output(pin, GPIO.LOW)
 
-def redOn():
-    blink(redPin)
+def redOn(intensity):
+    blink(redPin, intensity)
 
-def greenOn():
-    blink(greenPin)
+def greenOn(intensity):
+    blink(greenPin, intensity)
 
-def blueOn():
-    blink(bluePin)
+def blueOn(intensity):
+    blink(bluePin, intensity)
 
-def yellowOn():
-    blink(redPin)
-    blink(greenPin)
+def yellowOn(intensity):
+    blink(redPin, intensity)
+    blink(greenPin, intensity)
 
-def cyanOn():
-    blink(greenPin)
-    blink(bluePin)
+def cyanOn(intensity):
+    blink(greenPin, intensity)
+    blink(bluePin, intensity)
 
-def magentaOn():
-    blink(redPin)
-    blink(bluePin)
+def magentaOn(intensity):
+    blink(redPin, intensity)
+    blink(bluePin, intensity)
 
-def whiteOn():
-    blink(redPin)
-    blink(greenPin)
-    blink(bluePin)
+def whiteOn(intensity):
+    blink(redPin, intensity)
+    blink(greenPin, intensity)
+    blink(bluePin, intensity)
 
 def redOff():
     turnOff(redPin)
@@ -76,58 +82,57 @@ def whiteOff():
 
 def turnOn(color, intensity):
     if color == "red":
-        redOn()
+        redOn(intensity)
     elif color == "green":
-        greenOn()
+        greenOn(intensity)
     elif color == "blue":
-        blueOn()
+        blueOn(intensity)
     elif color == "yellow":
-        yellowOn()
+        yellowOn(intensity)
     elif color == "cyan":
-        cyanOn()
+        cyanOn(intensity)
     elif color == "magenta":
-        magentaOn()
+        magentaOn(intensity)
     elif color == "white":
-        whiteOn()
-#
-#
-
+        whiteOn(intensity)
 
 def main():
-    # while True:
-    #     status = input("on or off?: ")
-    #     if status == "on":
-    #         color = input("color?: ")
-    #         intensity = input("enter intensity value (0 to 100): ")
-    #         duty = int(intensity)
-    #         pwm_led = GPIO.PWN()
-    #         whiteOff()
-    #         turnOn(color, intensity)
-    #     else:
-    #         whiteOff()
+    while True:
+        status = input("on or off?: ")
+        if status == "on":
+            color = input("color?: ")
+
+
+            intensity = input("enter intensity value (0 to 100): ")
+            duty = int(intensity)
+            pwm_led = GPIO.PWN()
+            whiteOff()
+            turnOn(color, intensity)
+        else:
+            whiteOff()
+
+
     led = redPin
     GPIO.setmode(GPIO.BCM)
     GPIO.setup(led, GPIO.OUT)
-    # 50Hz PWM Frequency
-    pwm_led = GPIO.PWM(led, 50)
-    # Full Brightness, 100% Duty Cycle
-    pwm_led.start(100)
+
+    pwm_led = GPIO.PWM(led, 50)# 50Hz PWM Frequency
+
+    pwm_led.start(100)# Full Brightness, 100% Duty Cycle
     try:
         while True:
             duty_s = input("Enter Brightness Value (0 to 100):")
-            # Convert into Integer Value  
+            # Convert into Integer Value
             duty = int(duty_s)
             pwm_led.ChangeDutyCycle(duty)
             time.sleep(0.5)
     except KeyboardInterrupt:
-        print
-        "Exiting Program"
+        print("Exiting Program")
     except:
-        print
-        "Error Occurs, Exiting Program"
+        print("Error Occurs, Exiting Program")
     finally:
         GPIO.cleanup()
-    GPIO.cleanup()
+    #GPIO.cleanup()
 
 main()
 
