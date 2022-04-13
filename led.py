@@ -45,31 +45,38 @@ def blueOn(intensity):
     greenLED.stop()
 
 def yellowOn(intensity):
-    redOn(intensity)
-    greenOn(intensity)
+    global redLED
+    global greenLED
+    redLED.start(intensity)
+    greenLED.start(intensity)
     blueLED.stop()
 
     #blink(redPin, intensity)
     #blink(greenPin, intensity)
 
 def cyanOn(intensity):
-    greenOn(intensity)
-    blueOn(intensity)
+    greenLED.start(intensity)
+    blueLED.start(intensity)
     redLED.stop()
     #blink(greenPin, intensity)
     #blink(bluePin, intensity)
 
 def magentaOn(intensity):
-    redOn(intensity)
-    blueOn(intensity)
+    #redOn(intensity)
+    #blueOn(intensity)
+    redLED.start(intensity)
+    blueLED.start(intensity)
     greenLED.stop()
     #blink(redPin, intensity)
     #blink(bluePin, intensity)
 
 def whiteOn(intensity):
-    redOn(intensity)
-    greenOn(intensity)
-    blueOn(intensity)
+    redLED.start(intensity)
+    blueLED.start(intensity)
+    greenLED.start(intensity)
+    #redOn(intensity)
+    #greenOn(intensity)
+    #blueOn(intensity)
     #blink(redPin, intensity)
     #blink(greenPin, intensity)
     #blink(bluePin, intensity)
