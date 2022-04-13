@@ -7,7 +7,7 @@ import RPi.GPIO as GPIO
 
 import sys
 
-redPin = 21
+redPin = 12
 greenPin = 19
 bluePin = 13
 start = 0
@@ -15,27 +15,28 @@ GPIO.setmode(GPIO.BCM)
 GPIO.setup(redPin, GPIO.OUT)
 GPIO.setup(greenPin, GPIO.OUT)
 GPIO.setup(bluePin, GPIO.OUT)
+redLED = GPIO.PWM(redPin, 50)
+greenLED = GPIO.PWM(greenPin, 50)
+blueLED = GPIO.PWM(bluePin, 50)
 
-def turnOff(pin):
-    GPIO.setmode(GPIO.BCM)
-    #GPIO.setwarnings(False)
-    GPIO.setup(pin, GPIO.OUT)
-    GPIO.output(pin, GPIO.LOW)
+
+# def turnOff(pin):
+#     GPIO.setmode(GPIO.BCM)
+#     #GPIO.setwarnings(False)
+#     GPIO.setup(pin, GPIO.OUT)
+#     GPIO.output(pin, GPIO.LOW)
 
 def redOn(intensity):
-    #blink(redPin, intensity)
-    pwm_led = GPIO.PWM(redPin, 50)
-    pwm_led.start(0)
+    global redLED
+    redLED.start(0)
 
 def greenOn(intensity):
-    #blink(greenPin, intensity)
-    pwm_led = GPIO.PWM(greenPin, 50)
-    pwm_led.start(0)
+    global greenLED
+    greenLED.start(0)
 
 def blueOn(intensity):
-    #blink(bluePin, intensity)
-    pwm_led = GPIO.PWM(bluePin, 50)
-    pwm_led.start(0)
+    global blueLED
+    blueLED.start(0)
 
 # def yellowOn(intensity):
 #     blink(redPin, intensity)
@@ -54,31 +55,31 @@ def blueOn(intensity):
 #     blink(greenPin, intensity)
 #     blink(bluePin, intensity)
 
-def redOff():
-    turnOff(redPin)
-
-def greenOff():
-    turnOff(greenPin)
-
-def blueOff():
-    turnOff(bluePin)
-
-def yellowOff():
-    turnOff(redPin)
-    turnOff(greenPin)
-
-def cyanOff():
-    turnOff(greenPin)
-    turnOff(bluePin)
-
-def magentaOff():
-    turnOff(redPin)
-    turnOff(bluePin)
-
-def whiteOff():
-    turnOff(redPin)
-    turnOff(greenPin)
-    turnOff(bluePin)
+# def redOff():
+#     turnOff(redPin)
+#
+# def greenOff():
+#     turnOff(greenPin)
+#
+# def blueOff():
+#     turnOff(bluePin)
+#
+# def yellowOff():
+#     turnOff(redPin)
+#     turnOff(greenPin)
+#
+# def cyanOff():
+#     turnOff(greenPin)
+#     turnOff(bluePin)
+#
+# def magentaOff():
+#     turnOff(redPin)
+#     turnOff(bluePin)
+#
+# def whiteOff():
+#     turnOff(redPin)
+#     turnOff(greenPin)
+#     turnOff(bluePin)
 
 def turnOn(color, intensity):
     if color == "red":
@@ -104,10 +105,10 @@ def main():
             color = input("color?: ")
 
             intensity = input("enter intensity value (0 to 100): ")
-            whiteOff()
+            #whiteOff()
             turnOn(color, intensity)
         else:
-            whiteOff()
+            #whiteOff()
 
     GPIO.cleanup()
 
