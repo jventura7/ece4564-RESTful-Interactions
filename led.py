@@ -47,6 +47,7 @@ def blueOn(intensity):
 def yellowOn(intensity):
     redOn(intensity)
     greenOn(intensity)
+    blueLED.stop()
 
     #blink(redPin, intensity)
     #blink(greenPin, intensity)
@@ -54,12 +55,14 @@ def yellowOn(intensity):
 def cyanOn(intensity):
     greenOn(intensity)
     blueOn(intensity)
+    redLED.stop()
     #blink(greenPin, intensity)
     #blink(bluePin, intensity)
 
 def magentaOn(intensity):
     redOn(intensity)
     blueOn(intensity)
+    greenLED.stop()
     #blink(redPin, intensity)
     #blink(bluePin, intensity)
 
